@@ -41,9 +41,7 @@ services:
 
   wiki:
     container_name: wiki-app
-    build:
-      context: ../..
-      dockerfile: dev/containers/Dockerfile
+    image: wikijs
     depends_on:
       - db
     ports:

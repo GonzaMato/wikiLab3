@@ -1,5 +1,5 @@
 <template lang='pug'>
-  v-app-bar.nav-header(color='black', dark, app, :clipped-left='!$vuetify.rtl', :clipped-right='$vuetify.rtl', fixed, flat, :extended='searchIsShown && $vuetify.breakpoint.smAndDown')
+  v-app-bar.nav-header(color='cyan', dark, app, :clipped-left='!$vuetify.rtl', :clipped-right='$vuetify.rtl', fixed, flat, :extended='searchIsShown && $vuetify.breakpoint.smAndDown')
     v-toolbar(color='deep-purple', flat, slot='extension', v-if='searchIsShown && $vuetify.breakpoint.smAndDown')
       v-text-field(
         ref='searchFieldMobile'
@@ -17,6 +17,11 @@
         @keyup.enter='searchEnter'
         autocomplete='none'
       )
+    v-menu(offset-y, bottom, min-width='200', transition='slide-y-transition', left)
+      template(v-slot:activator='{ on }')
+        v-btn.ml-2.mr-0(icon, v-on='on')
+          v-icon(color='grey') mdi-calendar
+        input(type="date", v-model="selectedDate", @change="handleDateChange")
     v-layout(row)
       v-flex(xs5, md4)
         v-toolbar.nav-header-inner(color='black', dark, flat, :class='$vuetify.rtl ? `pr-3` : `pl-3`')
@@ -274,6 +279,7 @@ export default {
   },
   data() {
     return {
+      selectedDate: null,
       menuIsShown: true,
       searchIsShown: true,
       searchAdvMenuShown: false,
@@ -372,6 +378,9 @@ export default {
     this.isDevMode = siteConfig.devMode === true
   },
   methods: {
+    handleDateChange() {
+      console.log(this.selectedDate)
+    },
     searchFocus () {
       this.searchIsFocused = true
     },
