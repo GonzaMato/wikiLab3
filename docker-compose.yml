@@ -1,0 +1,38 @@
+version: '3'
+services:
+  wikijs:
+    build: .
+    container_name: wikijs
+    ports:
+      - "3000:3000"
+      - "3443:3443"
+    volumes:
+      - ./wiki/data/content:/wiki/data/content
+    environment:
+      DB_TYPE: "postgres"
+      DB_HOST: "db"
+      DB_PORT: 5432
+      DB_USER: "wikiuser"
+      DB_PASS: "wikidbpassword"
+      DB_NAME: "wikidb"
+      WIKI_ADMIN_EMAIL: "admin@example.com"
+      WIKI_ADMIN_PASSWORD: "password"
+    depends_on:
+      - db
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/healthz"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+    restart: unless-stopped
+
+  db:
+    image: postgres:13
+    container_name: wikijs_db
+    environment:
+      POSTGRES_USER: "wikiuser"
+      POSTGRES_PASSWORD: "wikidbpassword"
+      POSTGRES_DB: "wikidb"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
