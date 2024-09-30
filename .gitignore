@@ -5,7 +5,7 @@ logs
 
 # Deployment builds
 dist
-
+.env
 # Dependency directories
 node_modules
 npm/node_modules
