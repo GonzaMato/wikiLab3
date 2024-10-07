@@ -21,7 +21,7 @@ npm-debug.log*
 server/views/master.pug
 server/views/legacy/master.pug
 server/views/setup.pug
-
+/ssh
 # Webpack
 .webpack-cache
 .fusebox
