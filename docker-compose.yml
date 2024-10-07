@@ -16,6 +16,8 @@ services:
       DB_NAME: "wikidb"
       WIKI_ADMIN_EMAIL: "admin@example.com"
       WIKI_ADMIN_PASSWORD: "password"
+    env_file:
+      - .env
     depends_on:
       - db
     healthcheck:

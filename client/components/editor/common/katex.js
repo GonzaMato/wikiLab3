@@ -87,8 +87,8 @@ export default {
         // Escape the curly braces since they will be interpreted as
         // attributes by markdown-it-attrs (the "curly_attributes"
         // core rule)
-        .replaceAll("{", "{{")
-        .replaceAll("}", "}}")
+        .replaceAll('{', '{{')
+        .replaceAll('}', '}}')
     }
 
     state.pos = match + 1
