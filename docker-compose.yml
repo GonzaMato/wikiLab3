@@ -30,7 +30,7 @@ services:
       resources:
         limits:
           cpus: '1.0'
-          memory: 2G
+          memory: 1G
 
   db:
     image: postgres:13
